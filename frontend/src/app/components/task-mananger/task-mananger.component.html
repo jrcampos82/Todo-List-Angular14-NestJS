@@ -1,0 +1,182 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row gap-0">
+    <div class="col-md-4 col-sm-4 bginfo p-0">
+      <div class="bg-header-todo p-4 m-0">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="info"
+          class="col-1"
+        ></mat-icon>
+        <div class="ms-3 fs-5">To Do</div>
+      </div>
+
+      <div
+        class="todo dragList1"
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doingList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="cardTask shadow-sm"
+          *ngFor="let todo of todo"
+          cdkDrag
+          [cdkDragData]="todo"
+        >
+          <div class="titleTodo">
+            <div>Criado por {{ todo.dono }}</div>
+            <div>{{ todo.criadoEm | date: 'HH:mm:ss' }}</div>
+          </div>
+          <div class="tastContent">
+            {{ todo.name }}
+          </div>
+        </div>
+
+        <div class="add">
+          <button type="button" class="shadow-sm">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="add"
+            ></mat-icon>
+          </button>
+        </div>
+
+        <div *ngIf="todo.length == 0" class="noTask">
+          <div class="icon">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="done"
+            ></mat-icon>
+          </div>
+
+          <div class="subtitle1">No Tasks</div>
+          <div class="subtitle2">Drag tasks here</div>
+          <div class="subtitle2">or click + to add new tasks</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 m-0 p-0">
+      <div class="bg-header-doing p-4 m-0">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="browse_gallery"
+          class="col-1"
+        ></mat-icon>
+        <div class="ms-3 fs-5">Doing</div>
+      </div>
+      <div
+        class="doing dragList"
+        cdkDropList
+        #doingList="cdkDropList"
+        [cdkDropListData]="doing"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="cardTask shadow-sm"
+          *ngFor="let todo of doing"
+          cdkDrag
+          [cdkDragData]="todo"
+        >
+          <div class="titleDoing">
+            <div>Criado por {{ todo.dono }}</div>
+            <div>{{ todo.criadoEm | date: 'HH:mm:ss' }}</div>
+          </div>
+          <div class="tastContent">
+            {{ todo.name }}
+          </div>
+        </div>
+
+        <div class="add">
+          <button type="button" class="shadow-sm">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="add"
+            ></mat-icon>
+          </button>
+        </div>
+
+        <div *ngIf="doing.length == 0" class="noTask">
+          <div class="icon">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="done"
+            ></mat-icon>
+          </div>
+
+          <div class="subtitle1">No Tasks</div>
+          <div class="subtitle2">Drag tasks here</div>
+          <div class="subtitle2">or click + to add new tasks</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-task col-md-4 col-sm-4 m-0 p-0">
+      <div class="bg-header-done p-4 m-0">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="check_circle"
+          class="col-1"
+        ></mat-icon>
+        <div class="ms-3 fs-5">Done</div>
+      </div>
+
+      <div
+        class="doing dragList1"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, doingList]"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="cardTask shadow-sm"
+          *ngFor="let todo of done"
+          cdkDrag
+          [cdkDragData]="todo"
+        >
+          <div class="titleDone">
+            <div>Criado por {{ todo.dono }}</div>
+            <div>{{ todo.criadoEm | date: 'HH:mm:ss' }}</div>
+          </div>
+          <div class="tastContent">
+            {{ todo.name }}
+          </div>
+        </div>
+
+        <div class="add">
+          <button type="button" class="shadow-sm">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="add"
+            ></mat-icon>
+          </button>
+        </div>
+
+        <div *ngIf="done.length == 0" class="noTask">
+          <div class="icon">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="done"
+            ></mat-icon>
+          </div>
+
+          <div class="subtitle1">No Tasks</div>
+          <div class="subtitle2">Drag tasks here</div>
+          <div class="subtitle2">or click + to add new tasks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
