@@ -131,7 +131,7 @@
       </div>
 
       <div
-        class="doing dragList1"
+        class="done dragList1"
         cdkDropList
         #doneList="cdkDropList"
         [cdkDropListData]="done"
@@ -154,7 +154,7 @@
         </div>
 
         <div class="add">
-          <button type="button" class="shadow-sm">
+          <button type="button" class="shadow-sm" (click)="(add_task)">
             <mat-icon
               aria-hidden="false"
               aria-label="Example home icon"
